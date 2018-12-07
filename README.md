@@ -36,6 +36,12 @@ mvn clean install
 
 ### Run
 
+In order to run the server, you will need a Mongo DB. The easiest way to get one is with docker:
+
+```bash
+docker run -p 27017:27017 --name some-mongo -d mongo
+```
+
 To launch the server, simply run with java -jar the generated jar file.
 
 ```bash

@@ -17,27 +17,8 @@ management:
 spring:
   application:
     name: reactive-fundamentals
-  datasource:
-    url: jdbc:h2:file:~/reactive
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-    max-active: 10
-    max-idle: 8
-    max-wait: 10000
-    min-evictable-idle-time-millis: 1000
-    min-idle: 8
-    time-between-eviction-runs-millis: 1
-
-  resources:
-    cache:
-      cachecontrol:
-        # Maximum time the response should be cached (in seconds)
-        max-age: 120
-        # The cache must re-validate stale resources with the server. Any expired resources must not be used without re-validating.
-        must-revalidate: true
-
-  h2:
-    console:
-      enabled: true
-      path: /h2
+  data:
+    mongodb:
+      database: demo
+      host: localhost
+      port: 27017

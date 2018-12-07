@@ -1,36 +1,34 @@
 package com.systelab.reactive.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.*;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import java.sql.Timestamp;
-import java.util.UUID;
+import java.io.Serializable;
+import java.util.Date;
 
-@MappedSuperclass
-@Data
-public abstract class ModelBase {
+@Setter
+@Getter
+public abstract class ModelBase implements Serializable {
 
     @Id
-    @ApiModelProperty(notes = "The database generated model ID")
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)")
-    protected UUID id;
+    private String id;
 
-    @CreationTimestamp
-    @JsonIgnore
-    protected Timestamp creationTime;
+    @CreatedBy
+    private String createdBy;
 
-    @UpdateTimestamp
-    @JsonIgnore
-    protected Timestamp updateTime;
+    @CreatedDate
+    private Date createdDate;
+
+    @LastModifiedBy
+    private String updatedBy;
+
+    @LastModifiedDate
+    private Date updatedDate;
+
+    @Version
+    private Long version;
+
+    private Boolean delete = Boolean.FALSE;
 
 }

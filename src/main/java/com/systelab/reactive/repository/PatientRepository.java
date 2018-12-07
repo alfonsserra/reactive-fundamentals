@@ -1,16 +1,14 @@
 package com.systelab.reactive.repository;
 
 import com.systelab.reactive.model.patient.Patient;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
-import java.util.UUID;
+import reactor.core.publisher.Mono;
 
 @Repository
-public interface PatientRepository extends JpaRepository<Patient, UUID> {
+public interface PatientRepository extends ReactiveCrudRepository<Patient, String> {
 
-    Optional<Patient> findById(@Param("id") UUID id);
+    Mono<Patient> findById(@Param("id") String id);
 
 }
